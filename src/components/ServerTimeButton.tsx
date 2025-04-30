@@ -3,11 +3,11 @@ import { fetchServerTimeOffset } from '@/utils/time';
 
 export const ServerTimeButton: React.FC = () => {
   const [offset, setOffset] = useState<string | null>(null);
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState<boolean>(false);
 
-  const handleClick = async () => {
+  const handleClick: () => Promise<void> = async () => {
     setLoading(true);
-    const offset = await fetchServerTimeOffset();
+    const offset: string = await fetchServerTimeOffset();
     setOffset(offset);
     setLoading(false);
   };

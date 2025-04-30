@@ -5,10 +5,12 @@ interface AngleButtonProps {
   date: Date;
 }
 
-export const AngleButton: React.FC<AngleButtonProps> = ({ date }) => {
+export const AngleButton: React.FC<AngleButtonProps> = ({
+  date,
+}: AngleButtonProps) => {
   const [angle, setAngle] = useState<number | null>(null);
 
-  const handleClick = () => {
+  const handleClick: () => void = () => {
     setAngle(calculateAngle(date));
   };
 
