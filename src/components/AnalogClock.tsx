@@ -1,16 +1,27 @@
 import React from 'react';
 
+/**
+ * Props pro komponentu AnalogClock
+ * - date: aktuální čas, podle kterého se vykreslují ručičky hodin
+ */
 interface AnalogClockProps {
   date: Date;
 }
 
+/**
+ * Komponenta AnalogClock
+ * - Vykresluje SVG analogové hodiny podle zadaného času
+ * - Zobrazuje ciferník, číslice, minutové čárky a všechny tři ručičky
+ */
 export const AnalogClock: React.FC<AnalogClockProps> = ({
   date,
 }: AnalogClockProps) => {
-  const size: number = 200;
+  // Rozměry SVG hodin
+  const size: number = 300;
   const center: number = size / 2;
   const radius: number = size / 2 - 10;
 
+  // Získání aktuálních hodin, minut a sekund
   const hours: number = date.getHours() % 12;
   const minutes: number = date.getMinutes();
   const seconds: number = date.getSeconds() + date.getMilliseconds() / 1000;
@@ -37,7 +48,7 @@ export const AnalogClock: React.FC<AnalogClockProps> = ({
         {[...Array(12)].map((_, i: number) => {
           const angleDeg: number = (i + 1) * 30 - 90;
           const angleRad: number = angleDeg * (Math.PI / 180);
-          const rNum: number = radius - 18;
+          const rNum: number = radius - 22;
           const x: number = center + rNum * Math.cos(angleRad);
           const y: number = center + rNum * Math.sin(angleRad);
           const rotate: number = angleDeg + 90;
